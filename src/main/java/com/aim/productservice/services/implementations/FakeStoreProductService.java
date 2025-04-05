@@ -15,8 +15,8 @@ public class FakeStoreProductService implements ProductService {
 
     @Override
     public Product getProductById(long id) {
-        FakeProductDTO fakeProductDTO = restTemplate.getForObject("https://fakestoreapi.com/products/" + id, FakeProductDTO.class);
-        assert fakeProductDTO != null;
+        FakeProductDTO fakeProductDTO = restTemplate.getForObject(
+                "https://fakestoreapi.com/products/" + id, FakeProductDTO.class);
         return fakeProductDTO.toProduct();
     }
 }
