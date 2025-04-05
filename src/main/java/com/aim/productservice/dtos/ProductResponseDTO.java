@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class ProductDTO {
+public class ProductResponseDTO {
     private long id;
     private String name;
     private String description;
@@ -14,8 +14,8 @@ public class ProductDTO {
     private double price;
     private String category;
 
-    public static ProductDTO fromProduct(Product product) {
-        return ProductDTO.builder()
+    public static ProductResponseDTO fromProduct(Product product) {
+        return ProductResponseDTO.builder()
                 .id(product.getId())
                 .name(product.getName())
                 .description(product.getDescription())

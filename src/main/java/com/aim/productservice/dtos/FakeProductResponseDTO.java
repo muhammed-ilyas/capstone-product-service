@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class FakeProductDTO {
+public class FakeProductResponseDTO {
     private long id;
     private String title;
     private double price;
