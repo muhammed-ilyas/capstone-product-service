@@ -1,15 +1,17 @@
 package com.aim.productservice.models;
 
-import lombok.Builder;
-import lombok.Data;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@Builder
-public class Product {
-    private long id;
-    private String name;
+@Getter
+@Setter
+@Entity
+public class Product extends BaseModel{
     private String description;
     private String imageUrl;
     private double price;
+    @ManyToOne
     private Category category;
 }

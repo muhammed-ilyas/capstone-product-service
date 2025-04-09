@@ -16,14 +16,16 @@ public class FakeProductResponseDTO {
     private String image;
 
     public Product toProduct() {
-        return Product.builder()
-                .id(id)
-                .name(title)
-                .description(description)
-                .imageUrl(image)
-                .price(price)
-                .category(Category.builder().name(category).build())
-                .build();
+        Product product = new Product();
+        product.setId(id);
+        product.setName(title);
+        product.setPrice(price);
+        product.setDescription(description);
+        product.setImageUrl(image);
+        Category category1 = new Category();
+        category1.setName(this.category);
+        product.setCategory(category1);
+        return product;
     }
 }
 

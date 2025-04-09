@@ -15,12 +15,14 @@ public class ProductRequestDTO {
     private String category;
 
     public Product toProduct() {
-        return Product.builder()
-                .name(name)
-                .description(description)
-                .imageUrl(imageUrl)
-                .price(price)
-                .category(Category.builder().name(category).build())
-                .build();
+        Product product = new Product();
+        product.setName(name);
+        product.setDescription(description);
+        product.setImageUrl(imageUrl);
+        product.setPrice(price);
+        Category category1 = new Category();
+        category1.setName(this.category);
+        product.setCategory(category1);
+        return product;
     }
 }
