@@ -4,7 +4,7 @@ import com.aim.productservice.dtos.ProductRequestDTO;
 import com.aim.productservice.dtos.ProductResponseDTO;
 import com.aim.productservice.models.Product;
 import com.aim.productservice.services.ProductService;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +18,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/v1/products")
-@AllArgsConstructor
 public class ProductController {
 
     private final ProductService productService;
+
+    public ProductController(@Qualifier("productDBService")
+                             ProductService productService) {
+        this.productService = productService;
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<ProductResponseDTO> getProductById(@PathVariable long id) {
