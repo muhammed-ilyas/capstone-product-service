@@ -15,6 +15,9 @@ public class ProductResponseDTO {
     private String category;
 
     public static ProductResponseDTO fromProduct(Product product) {
+        if (product == null) {
+            return null;
+        }
         return ProductResponseDTO.builder()
                 .id(product.getId())
                 .name(product.getName())
