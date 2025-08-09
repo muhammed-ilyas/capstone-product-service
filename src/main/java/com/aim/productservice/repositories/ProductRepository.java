@@ -26,6 +26,12 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query(value = CustomQuery.GET_PRODUCT_BY_CATEGORY_NAME, nativeQuery = true)
     List<Product> getProductByCategoryNameNative(@Param("categoryName") String categoryName);
 
+    /**
+     * Finds products by name containing the specified string, ignoring case.
+     * @param name the name string to search for
+     * @param pageable the pagination information
+     * @return a paginated list of products matching the name criteria
+     */
     Page<Product> findByNameContainingIgnoreCase(String name, Pageable pageable);
 
 }

@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/v1/search")
 public class SearchController {
+    /**
+     * SearchController handles product search requests.
+     * It provides endpoints to search products by query string or by a search request DTO.
+     */
 
     private final SearchService searchService;
 
@@ -22,6 +26,11 @@ public class SearchController {
         this.searchService = searchService;
     }
 
+    /**
+     * Search products based on the provided search request DTO POST method.
+     * @param searchRequestDTO the search request containing query, page, size, and sortBy
+     * @return a paginated list of product response DTOs
+     */
     @PostMapping
     public Page<ProductResponseDTO> search(@RequestBody SearchRequestDTO searchRequestDTO) {
         Page<Product> productPage = searchService.search(searchRequestDTO.getQuery(),
@@ -31,6 +40,14 @@ public class SearchController {
         return productPage.map(ProductResponseDTO::fromProduct);
     }
 
+    /**
+     * Search products based on the provided query string GET method.
+     * @param query the search query string
+     * @param page the page number to retrieve
+     * @param size the number of items per page
+     * @param sortBy the field to sort by
+     * @return a paginated list of product response DTOs
+     */
     @GetMapping
     public Page<ProductResponseDTO> search(@RequestParam String query,
                                            @RequestParam(defaultValue = "0") int page,
