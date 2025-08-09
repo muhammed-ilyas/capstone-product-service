@@ -2,6 +2,8 @@ package com.aim.productservice.repositories;
 
 import com.aim.productservice.models.Category;
 import com.aim.productservice.models.Product;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -23,5 +25,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query(value = CustomQuery.GET_PRODUCT_BY_CATEGORY_NAME, nativeQuery = true)
     List<Product> getProductByCategoryNameNative(@Param("categoryName") String categoryName);
+
+    Page<Product> findByNameContainingIgnoreCase(String name, Pageable pageable);
 
 }
